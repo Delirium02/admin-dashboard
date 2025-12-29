@@ -6,11 +6,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --light-bg-color: rgb(250, 250, 250);
+    --dark-bg-color: rgb(30, 30, 30);
+    --main-theme-color: rgb(6, 26, 94);
+}
+
 html,
 body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
-
 }
 
 /* Container */
@@ -18,7 +23,7 @@ body {
 .container {
     display: grid;
     min-height: 100vh;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr 5fr;
 }
 
@@ -27,9 +32,10 @@ body {
 .sidebar {
     display: grid;
     grid-template-rows: 1fr 3.3fr 5fr;
-    background-color: rgb(0, 140, 155);
+    background-color: var(--main-theme-color);
     grid-column: 1 / 1;
     grid-row: 1 / 3;
+    z-index: 2;
 }
 
 .sidebar {
@@ -47,6 +53,7 @@ body {
 .sidebar-icon {
     height: 25px;
     width: 25px;
+    filter: invert(73%) sepia(8%) saturate(2950%) hue-rotate(168deg) brightness(108%) contrast(92%);
 }
 
 .sidebar-options-1, .sidebar-options-2 {
@@ -58,7 +65,7 @@ body {
 .header {
     grid-column: 2 / 4;
     grid-row: 1 / 1;
-    background: #89f3ff;
+    background: var(--light-bg-color);
     padding: 1.2rem;
     box-shadow: 0 2px 10px rgb(185, 185, 185);
     z-index: 1;
@@ -74,7 +81,7 @@ body {
     border: none;
     border-radius: 20px;
     height: 1.8rem;
-    width: 20rem;
+    width: 30rem;
     background-color: rgb(226, 226, 226);
 }
 
@@ -89,36 +96,39 @@ body {
 .main-content {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 5fr 3fr;
-    grid-row: 2;
-    grid-column: 2 / 4;
-    gap: 0.8rem;
+    grid-template-rows: 4fr 3fr;
+    gap: 1.1rem;
     padding: 2rem;
-    background: #ccf7ff;
+    background: #cecece;
+}
+
+.main-content>div {
+    grid-row: 1 / 3;
 }
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    grid-row: 1 / 3;
-    gap: 10px;
+    grid-template-columns: repeat(2, minmax(400px, 2fr)); 
+    gap: 1rem;
 }
 
 .projects>div>p {
-    border: 1px solid red;
-    border-radius: 20px;
+    background: var(--light-bg-color);
+    border-left: 5px solid rgba(255, 187, 0);
+    border-radius: 10px;
     text-align: center;
     padding: 5rem 2rem;
+    box-shadow: 1px 1px 2px 1px #b4b4b4;
 }
 
 .announcements {
-    display: grid;
     grid-column: 2;
-    grid-row: 1 / 2;
-    background: #89f3ff;
+    grid-row: 1;
+    background: var(--light-bg-color);
     padding: 1rem;
+    border-radius: 10px;
 }
-/* you are here */
+/* how to make divider line other than solid? */
 .divider-line {
     border-bottom: 1px solid blue;
     margin-bottom: 1rem;
@@ -126,9 +136,9 @@ body {
 }
 
 .trending {
-    display: grid;
     grid-column: 2;
-    grid-row: 2 / 3;
-    background: #89f3ff; 
+    grid-row: 2;
+    background: var(--light-bg-color); 
     padding: 1rem;
+    border-radius: 10px;
 }
