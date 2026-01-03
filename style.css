@@ -22,14 +22,18 @@ body {
 
 .container {
     display: grid;
-    min-height: 100vh;
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: auto 1fr;
 }
 
 .icons {
     height: 25px;
     width: 25px;
+}
+
+.dashboard img {
+    height: 30px;
+    width: 30px;
 }
 
 /* Sidebar (left) */
@@ -50,21 +54,29 @@ body {
 }
 
 .dashboard,
-.sidebar-options-1>li,
-.sidebar-options-2>li {
+.list {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 5px 0;
 }
 
-.sidebar-icon {
-    filter: invert(73%) sepia(8%) saturate(2950%) hue-rotate(168deg) brightness(108%) contrast(92%);
-}
-
 .sidebar-options-1,
 .sidebar-options-2 {
     list-style: none;
+}
+
+.list {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.list img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.list:hover {
+    color: #a8f3ff;
 }
 
 /* Top Header Area */
@@ -99,6 +111,12 @@ body {
     background-color: #e2e2e2;
 }
 
+.search-bar>input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #0096c8;
+    padding-left: 10px;
+}
+
 .user-info {
     display: flex;
     align-items: center;
@@ -110,6 +128,11 @@ body {
     width: 70px;
     border-radius: 50%;
     object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.user-info>img:hover {
+    transform: scale(1.05);
 }
 
 .user-buttons {
@@ -119,19 +142,25 @@ body {
 
 .user-buttons>button {
     font-size: 16px;
-    background: var(--main-theme-color);
+    background: linear-gradient(90deg, #0096c8, #0066ff);
     color: white;
     padding: 0.4rem 2rem;
     border-radius: 50px;
     border: none;
     cursor: pointer;
     margin-top: 2rem;
-    transition: 0.2s;
+    background-size: 200%;
+    background-position: left;
+    transition: background-position 0.3s, transform 0.2s;
 }
 
 .user-buttons>button:hover {
-    background: #054080;
-    transform: scale(1.1); 
+    background-position: right;
+    transform: scale(1.1);
+}
+
+.user-buttons>button:active {
+    transform: scale(0.95);
 }
 
 /* Main Content (projects, announcements, trending) */
@@ -139,7 +168,6 @@ body {
 .main-content {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
     gap: 1.1rem;
     padding: 2rem;
     background: #cecece;
@@ -147,9 +175,8 @@ body {
 
 .project-section {
     display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 15px;
-    height: 100%;
+    gap: -10rem;
+    margin-top: 0;
 }
 
 .projects {
@@ -159,8 +186,6 @@ body {
 }
 
 .projects>div {
-    display: flex;
-    flex-direction: column;
     background: var(--light-bg-color);
     border-left: 5px solid #ffbb00;
     border-radius: 10px;
@@ -172,10 +197,9 @@ body {
 .projects>div p {
     margin: 0.5rem 0 1rem 0;
     flex-grow: 1;
-    
 }
 
-h4 + p {
+h4+p {
     opacity: 0.6;
 }
 
@@ -198,9 +222,13 @@ h4 + p {
     transform: scale(1.1);
 }
 
+.projects-icon>button:active {  
+    transform: scale(0.95);
+}
+
 .side-section {
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
     gap: 1rem;
 }
 
@@ -216,9 +244,8 @@ h4 + p {
     margin-bottom: 1rem;
 }
 
-/* how to make divider line other than solid? */
 .divider-line {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     margin: 1rem;
     align-items: center;
 }
@@ -239,10 +266,12 @@ h4 + p {
 .trending {
     display: flex;
     flex-direction: column;
-    grid-column: 2 / 3;
 }
 
-.announcements > div,
-.trending > div {
+.announcements>div,
+.trending>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
 }
